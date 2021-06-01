@@ -27,7 +27,11 @@ def ordenador(listaArchivos, name):
 
 def main():
     name = input("Ingresa el nombre de la carpeta con las imagenes\n")
-    os.chdir(name + '/')
+    try:
+        os.chdir(name + '/')
+    except FileNotFoundError :
+        name = input("No se encuentra la carpeta\nIngresa el nombre de la carpeta con las imagenes\n")
+
     os.listdir().sort()
     listaImg = (os.listdir()).copy()
     os.chdir('../')
@@ -44,6 +48,7 @@ def main():
     incorrectimg = pygame.image.load('Icons/incorrect.png')
     pygame.init()
     pygame.display.init()
+    pygame.display.set_caption('Filtrar imagenes')
     window = pygame.display.set_mode([1000, 720])
     window.blit(wp, (0, 0))
     window.blit(correctimg, (800, 100))
@@ -79,7 +84,7 @@ def main():
                     imagen += 1
                     window.blit(pygame.image.load(listaImg[i]), (50, 50))
                 pygame.display.flip()
-                if i == len(listaImg):
+                if i == len(listaImg)-1:
                     running = False
     os.chdir('ImagenesFiltradas/')
     ordenador(os.listdir(), name)
