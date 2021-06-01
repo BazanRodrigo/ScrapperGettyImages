@@ -13,5 +13,5 @@ La extensíon se puede descargar en la tienda de extensiones de chrome, para pod
 6.- Copiar todos los links y pegarlos en el archivo **_url.txt_**  
 7.- Ejecutar el archivo **_downloader.py_**
 
-El script filtrador.py aún es una beta, pues no he corregido la parte del tamaño de la pantalla, pero puedes intentar usarlo, si te sirve la imagen, selecciona la paloma de color verde, si no, selecciona la paloma de color rojo.  
-Se agregarán unas líneas para al final del filtrado, renombrar todas las imagenes para poder proceder a etiquetar para entrenar a YOLO
+El script filtrador.py es para filtrar las imagenes funcionales y las no funcionales, si te sirve la imagen, selecciona la paloma de color verde, si no, selecciona la paloma de color rojo.  
+Al final el script te devuelve una carpeta llamada Imagenes filtradas y listas para proceder a etiquetar las imagenes
