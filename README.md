@@ -8,7 +8,7 @@ La extensíon se puede descargar en la tienda de extensiones de chrome, para pod
 2.- Ejecutar el código **_Scrapper_**  
 3.- Abrir los links que te indica el código  
 4.- Una vez abiertos todos los links, ejecutar la extensión y seleccionar la opción _**`Download「All Tabs」`**_  
-5.- Seleccionar la opción  **_`Export links`_**
+5.- Seleccionar la opción  **_`Export links`_**  
 ![img.png](img.png)  
 6.- Copiar todos los links y pegarlos en el archivo **_url.txt_**  
 7.- Ejecutar el archivo **_downloader.py_**
