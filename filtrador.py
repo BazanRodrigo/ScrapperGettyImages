@@ -8,7 +8,7 @@ listaImg = []
 
 
 def save(img):
-    destino = 'ImagenesFiltradas' + str(img[4:])
+    destino = 'ImagenesFiltradas/' + str(img[img.index("/"):])
     shutil.copy(img, destino)
 
 
@@ -31,10 +31,9 @@ def main():
         os.chdir(name + '/')
     except FileNotFoundError :
         name = input("No se encuentra la carpeta\nIngresa el nombre de la carpeta con las imagenes\n")
-
-    os.listdir().sort()
-    listaImg = (os.listdir()).copy()
-    os.chdir('../')
+    #Ordenando las imagenes filtradas
+    os.chdir('ImagenesFiltradas/')
+    ordenador(os.listdir(), name)
     try:
         os.mkdir('ImagenesFiltradas')
     except FileExistsError:
@@ -65,6 +64,15 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    save(listaImg[i])
+                    i += 1
+                    print("Se guardo " + str(listaImg[i]))
+                if event.key == pygame.K_DOWN:
+                    print("No se guardo " + str(listaImg[i]))
+                    i += 1
+
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x = pygame.mouse.get_pos()[0]
                 y = pygame.mouse.get_pos()[1]
@@ -75,17 +83,18 @@ def main():
                 if x > 800 and x < 928 and y > 250 and y < 375:
                     print("No se guardo " + str(listaImg[i]))
                     i += 1
-                window.blit(wp, (0, 0))
-                window.blit(correctimg, (800, 100))
-                window.blit(incorrectimg, (800, 250))
-                try:
-                    window.blit(pygame.image.load(listaImg[i]), (50, 50))
-                except:
-                    imagen += 1
-                    window.blit(pygame.image.load(listaImg[i]), (50, 50))
-                pygame.display.flip()
-                if i == len(listaImg)-1:
-                    running = False
+            window.blit(wp, (0, 0))
+            window.blit(correctimg, (800, 100))
+            window.blit(incorrectimg, (800, 250))
+            try:
+                window.blit(pygame.image.load(listaImg[i]), (50, 50))
+            except:
+                imagen += 1
+                window.blit(pygame.image.load(listaImg[i]), (50, 50))
+            pygame.display.flip()
+            if i-1 == len(listaImg):
+                running = False
+    #Ordenando las imagenes filtradas
     os.chdir('ImagenesFiltradas/')
     ordenador(os.listdir(), name)
 

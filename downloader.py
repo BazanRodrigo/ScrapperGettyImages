@@ -19,17 +19,30 @@ for link in urls:
 name = input("Ingresa el nombre de las imagenes\n")
 try:
     os.mkdir(name)
+    os.chdir(name + '/')
 except FileExistsError:
     os.chdir(name+'/')
 print('descargando imagenes en '+os.getcwd())
 
 for link in listaLinks:
     if i < 10:
-        download_img(link, name+'000'+str(i)+'.jpg')
+        try:
+            download_img(link, name+'000'+str(i)+'.jpg')
+        except requests.exceptions.SSLError or requests.exceptions.ConnectionError:
+            print("Error de conexión")
     if i >= 10 and i < 100:
-        download_img(link, name + '00' + str(i)+'.jpg')
+        try:
+            download_img(link, name + '00' + str(i)+'.jpg')
+        except requests.exceptions.SSLError or requests.exceptions.ConnectionError:
+            print("Error de conexión")
     if i >= 100 and i < 1000:
-        download_img(link, name + '0' + str(i)+'.jpg')
+        try:
+            download_img(link, name + '0' + str(i)+'.jpg')
+        except requests.exceptions.SSLError or requests.exceptions.ConnectionError:
+            print("Error de conexión")
     if i >= 1000:
-        download_img(link, name + str(i)+'.jpg')
+        try:
+            download_img(link, name + str(i) + '.jpg')
+        except requests.exceptions.SSLError or requests.exceptions.ConnectionError:
+            print("Error de conexión")
     i += 1

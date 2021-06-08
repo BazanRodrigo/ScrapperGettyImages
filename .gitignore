@@ -1,4 +1,5 @@
 chef/
 ImagenesFiltradas/
-url.txt
+*.txt
 venv/
+doctor/
