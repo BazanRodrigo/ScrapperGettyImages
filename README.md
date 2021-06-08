@@ -14,4 +14,6 @@ La extensíon se puede descargar en la tienda de extensiones de chrome, para pod
 7.- Ejecutar el archivo **_downloader.py_**
 
 El script filtrador.py es para filtrar las imagenes funcionales y las no funcionales, si te sirve la imagen, selecciona la paloma de color verde, si no, selecciona la paloma de color rojo.  
-Al final el script te devuelve una carpeta llamada Imagenes filtradas y listas para proceder a etiquetar las imagenes
+Al final el script te devuelve una carpeta llamada Imagenes filtradas y listas para proceder a etiquetar las imagenes  
+
+Una vez hayas etiquetado las imagenes, puedes ejecutar el script  OrdenadorNumerador.py, para que todas las imagenes tengan una numeración cotinua sin perder las etiquetas generadas para entrenar YOLO
