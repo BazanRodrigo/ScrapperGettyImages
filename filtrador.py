@@ -13,7 +13,8 @@ def save(img):
 
 
 def ordenador(listaArchivos, name):
-    i = 0   
+    i = 0
+    listaArchivos.sort()
     for archivo in listaArchivos:
         if i < 10:
             os.rename(archivo, name + '000' + str(i) + '.jpg')
@@ -29,15 +30,30 @@ def main():
     name = input("Ingresa el nombre de la carpeta con las imagenes\n")
     try:
         os.chdir(name + '/')
+        listaImg = os.listdir()
+        listaImg.sort()
     except FileNotFoundError :
         name = input("No se encuentra la carpeta\nIngresa el nombre de la carpeta con las imagenes\n")
+        os.chdir(name + '/')
+        listaImg = os.listdir()
+        listaImg.sort()
+    os.chdir('../')
     #Ordenando las imagenes filtradas
-    os.chdir('ImagenesFiltradas/')
-    ordenador(os.listdir(), name)
+    print(listaImg)
+    ordenador(listaImg, name)
+    try:
+        os.chdir('ImagenesFiltradas/')
+    except FileNotFoundError :
+        os.mkdir('ImagenesFiltradas/')
+
+    #ordenador(os.listdir(), name)
     try:
         os.mkdir('ImagenesFiltradas')
+        os.chdir('../')
     except FileExistsError:
+        os.chdir('../')
         print("\n")
+
     i = 0
     for imagen in listaImg:
         listaImg[i] = name + '/' + str(listaImg[i])
