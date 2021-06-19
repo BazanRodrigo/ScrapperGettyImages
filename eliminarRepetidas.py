@@ -24,13 +24,19 @@ borrar = []
 for i in range(0, len(imagenes)):
     imagenUno = cv2.imread(imagenes[i])
     comparador = i+1
+    print("Comparando ", imagenes[i])
     while comparador < len(imagenes):
         imagenDos = cv2.imread((imagenes[comparador]))
-        print("Comparando ", imagenes[i], imagenes[comparador])
         if comparar(imagenUno, imagenDos) and imagenes[i] != imagenes[comparador]:
             print("Son iguales las imagenes ", imagenes[i], imagenes[comparador])
             imas = np.hstack((imagenUno, imagenDos))
-            cv2.imshow("Comparaciones", imas)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            #cv2.imshow("Comparaciones", imas)
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
+            borrar.append(imagenes[comparador])
         comparador += 1
+
+print(os.listdir())
+for archivo in borrar:
+    print(archivo)
+    os.remove(archivo)
