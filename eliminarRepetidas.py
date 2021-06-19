@@ -4,23 +4,33 @@ import os
 carpeta = input("Ingresa el nombre de la carpeta\n")
 os.chdir(carpeta)
 imagenes = os.listdir()
-
+imagenes.sort()
+n = len(imagenes)
 
 def comparar(i1, i2):
-    diferencia = cv2.subtract(i1, i2)
-    if not np.any(diferencia):
-        return True
-    else:
+    try:
+        diferencia = cv2.subtract(i1, i2)
+        if not np.any(diferencia):
+            return True
+        else:
+            return False
+    except cv2.error:
         return False
+i = 0
+j = 0
+comparador = 0
+borrar = []
 
-
-for imagen in imagenes:
-    imagenUno = cv2.imread(imagen, 1)
-    for segundaImagen in imagenes:
-        imagenDos = cv2.imread(imagen, 1)
-        if comparar(imagenUno, imagenDos):
-            imas = np.hstack((imagenDos, imagenDos))
-            cv2.imshow("Posibles repetciocions",imas)
-            print("Son repetidas segun")
-            d = input("\n")
-
+for i in range(0, len(imagenes)):
+    imagenUno = cv2.imread(imagenes[i])
+    comparador = i+1
+    while comparador < len(imagenes):
+        imagenDos = cv2.imread((imagenes[comparador]))
+        print("Comparando ", imagenes[i], imagenes[comparador])
+        if comparar(imagenUno, imagenDos) and imagenes[i] != imagenes[comparador]:
+            print("Son iguales las imagenes ", imagenes[i], imagenes[comparador])
+            imas = np.hstack((imagenUno, imagenDos))
+            cv2.imshow("Comparaciones", imas)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
+        comparador += 1
